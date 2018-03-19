@@ -30,6 +30,21 @@ RCT_EXPORT_MODULE(SplashScreen)
     [rootView setLoadingView:view];
 }
 
+RCT_EXPORT_METHOD(open) {
+    if (!rootView){
+        return;
+    }
+
+    dispatch_async(dispatch_get_main_queue(),
+                   ^{
+                       UIImageView *view = [[UIImageView alloc]initWithFrame:[UIScreen mainScreen].bounds];
+                       view.image = [UIImage imageNamed:@"splash"];
+                       view.contentMode = UIViewContentModeScaleAspectFill;
+                       rootView.loadingView = view;
+                       [rootView addSubview: rootView.loadingView];
+                   });
+}
+
 RCT_EXPORT_METHOD(close:(NSDictionary *)options) {
     if (!rootView) {
         return;

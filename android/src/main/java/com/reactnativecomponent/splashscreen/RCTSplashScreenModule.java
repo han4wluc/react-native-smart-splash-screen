@@ -25,6 +25,11 @@ public class RCTSplashScreenModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
+    public void open() {
+        RCTSplashScreen.openSplashScreen(getCurrentActivity(), true);
+    }
+
+    @ReactMethod
     public void close(ReadableMap options) {
 
         int animationType = RCTSplashScreen.UIAnimationNone;
